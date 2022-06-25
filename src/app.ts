@@ -2,6 +2,7 @@ import express from 'express';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore/lite';
 import getHandlers from './handlers'
+import getRepo from './repo'
 
 const app = express();
 const port = 3000;
@@ -10,7 +11,8 @@ const firebaseConfig = {projectId: ""};
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
-const handlers = getHandlers.init(db)
+const repo = getRepo.init(db)
+const handlers = getHandlers.init(repo)
 
 app.get('/households', async (req, res) => {
   const result = await handlers.getHouseHold()

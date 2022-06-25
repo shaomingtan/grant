@@ -1,5 +1,7 @@
-const getHouseHold = (db) => async () => {
-  console.log("getHouseHold")
+const getHouseHold = (repo) => async () => {
+  const {houseHoldRepo} = repo
+  const houseHolds = houseHoldRepo.getDocuments()
+  console.log("getHouseHold", houseHolds)
   return {someResult:[]};
 }
 

@@ -18,7 +18,7 @@ export enum OccupationTypes {
   EMPLOYED= 'Employed',
 }
 
-export interface HouseHold {
+export interface HouseHoldType {
   ID: string
   housingType: HousingTypes
   Members: Array<string>
