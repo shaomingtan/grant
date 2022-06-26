@@ -11,7 +11,7 @@ const houseHoldRepo = (db) => {
       return []
     }
     return snapshot.docs.map((doc:any) => {
-      return {...doc?.data(), id: doc.id}
+      return {...doc?.data(), id: doc.id} as HouseHoldType
     })
   };
 
