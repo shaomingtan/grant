@@ -43,13 +43,10 @@ app.get('/household/:houseHoldID', async (req, res) => {
 });
 
 app.post('/member', async (req, res) => {
-  try {
-    await handlers.addMember(req.body)
-    return res.sendStatus(200)
-  } catch (e) {
-    console.log("error", e)
-    return res.sendStatus(500)
-  }
+
+  const result = await handlers.addMember(req.body)
+  res.status(result.status)
+  return res.send(result.message)
 })
 
 app.get('/member/:memberID', async (req, res) => {
