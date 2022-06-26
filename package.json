@@ -4,13 +4,14 @@
   "description": "grant",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/src/app.js",
     "lint": "eslint . --ext .ts",
     "test": "ts-mocha -p tsconfig.json test/**/*"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.6",
     "express": "^4.17.1",
     "firebase-admin": "^11.0.0"
   },

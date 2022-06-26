@@ -4,9 +4,10 @@ import getHandlers from './handlers'
 import getRepo from './repo'
 
 const app = express();
+app.use(express.json());
 const port = 3000;
 
-const firebaseConfig = {projectId: ""};
+const firebaseConfig = {projectId: "grant-1cf9a"};
 
 const firebaseApp = firebaseAdmin.initializeApp(firebaseConfig);
 // Configuring to use local emulator for purpose of assignment
@@ -19,7 +20,18 @@ app.get('/households', async (req, res) => {
   const result = await handlers.getHouseHolds()
   res.json(result);
 });
-// app.post('/household', async (req, res) => {})
+
+app.post('/household', async (req, res) => {
+  try {
+    await handlers.addHouseHold(req.body)
+    return res.sendStatus(200)
+  } catch (e) {
+    console.log("error", e)
+    return res.sendStatus(500)
+  }
+})
+
+
 // app.patch('/household', async (req, res) => {})
 // app.delete('/household', async (req, res) => {})
 
