@@ -31,13 +31,21 @@ app.post('/household', async (req, res) => {
   }
 })
 
+app.get('/household/:houseHoldID', async (req, res) => {
+  try {
+    const {houseHoldID}=req.params
+    console.log("houseHoldID",houseHoldID,req.params)
+    const result = await handlers.getHouseHold(houseHoldID)
+    res.json(result);
+  } catch (e) {
+    console.log("error", e)
+    return res.sendStatus(500)
+  }
+});
+
 
 // app.patch('/household', async (req, res) => {})
 // app.delete('/household', async (req, res) => {})
-
-// app.get('/households', async (req, res) => {
-//   res.send('Hello World!');
-// });
 // app.post('/person', async (req, res) => {})
 // app.patch('/person', async (req, res) => {})
 // app.delete('/person', async (req, res) => {})
