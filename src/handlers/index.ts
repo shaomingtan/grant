@@ -1,4 +1,4 @@
-import getHouseHolds from './getHouseHolds';
+import getHouseHolds from './houseHoldHandler';
 
 const init = (repo) => {
   return {

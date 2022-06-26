@@ -1,4 +1,4 @@
-import {HouseHoldType} from "../types/houseHold"
+import {HouseHoldType} from "../types/houseHoldType"
 
 const houseHoldRepo = (db) => {
   const refHouseHold = (db) => db.collection('household');
@@ -25,9 +25,17 @@ const houseHoldRepo = (db) => {
             null;
   };
 
+  const addDocument = async (values: any) => {
+    const docRef = await refHouseHold(db)
+        .add(values)
+        .catch((e: any) => console.log('addHouseHold Error:', e));
+    return docRef.id
+  };
+
   return {
     getDocuments,
-    getDocument
+    getDocument,
+    addDocument
   }
 }
 

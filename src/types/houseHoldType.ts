@@ -19,11 +19,11 @@ export enum OccupationTypes {
 }
 
 export interface HouseHoldType {
-  ID: string
+  id?: string
   housingType: HousingTypes
-  Members: Array<string>
-  AnnualHouseholdIncome: number
-  createdAt: firebase.firestore.Timestamp
-  updatedAt: firebase.firestore.Timestamp
-  deletedAt: firebase.firestore.Timestamp
+  members: Array<string>
+  annualHouseholdIncome: number
+  createdAt?: firebase.firestore.Timestamp
+  updatedAt?: firebase.firestore.Timestamp
+  deletedAt?: firebase.firestore.Timestamp
 }
