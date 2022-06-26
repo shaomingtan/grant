@@ -68,6 +68,10 @@ app.post('/household/:houseHoldID/member/:memberID', async (req, res) => {
     return res.send(result.message)
 })
 
+app.get('/search', async (req, res) => {
+  await handlers.search(req.query)
+  return res.sendStatus(200)
+});
 
 // app.patch('/household', async (req, res) => {})
 // app.delete('/household', async (req, res) => {})

@@ -1,3 +1,4 @@
+import e from "express";
 import {MemberType} from "../types/memberType"
 
 const  memberRepo = (db) => {
@@ -39,11 +40,32 @@ const  memberRepo = (db) => {
         .catch((e: any) => console.log('updateMember Error:', e));
   };
 
+  const getDocumentsBy = async (searchPlan) => {
+    let query 
+    for(let i=0; i<searchPlan.length;i++){
+      const queryItem = searchPlan[i]
+      if (i==0){
+        query = refMember(db).where(queryItem[0],queryItem[1],queryItem[2])
+      } else {
+        query.where(queryItem[0],queryItem[1],queryItem[2])
+      }
+    }
+    const snapshot = await query.get()
+        .catch((e: any) => console.log('getMembersByCriteria Error:', e));
+    if (!snapshot || snapshot?.empty) {
+      return []
+    }
+    return snapshot.docs.map((doc:any) => {
+      return {...doc?.data(), id: doc.id} as MemberType
+    })
+  }
+
   return {
     getDocuments,
     getDocument,
     addDocument,
-    updateDocument
+    updateDocument,
+    getDocumentsBy
   }
 }
 
