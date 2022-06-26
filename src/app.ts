@@ -1,6 +1,5 @@
 import express from 'express';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import firebaseAdmin from 'firebase-admin'
 import getHandlers from './handlers'
 import getRepo from './repo'
 
@@ -9,13 +8,15 @@ const port = 3000;
 
 const firebaseConfig = {projectId: ""};
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getFirestore(firebaseApp);
+const firebaseApp = firebaseAdmin.initializeApp(firebaseConfig);
+// Configuring to use local emulator for purpose of assignment
+process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
+const db = firebaseAdmin.firestore(firebaseApp)
 const repo = getRepo.init(db)
 const handlers = getHandlers.init(repo)
 
 app.get('/households', async (req, res) => {
-  const result = await handlers.getHouseHold()
+  const result = await handlers.getHouseHolds()
   res.json(result);
 });
 // app.post('/household', async (req, res) => {})

@@ -1,4 +1,4 @@
-import firestore from '@firebase/firestore';
+import firebase from 'firebase-admin';
 
 export enum GenderTypes {
   MALE = 'male',
@@ -24,13 +24,13 @@ export interface Person {
   SpouseID: string
   OccupationType: OccupationTypes
   AnnualIncome: number
-  DateOfBirth: firestore.Timestamp
+  DateOfBirth: firebase.firestore.Timestamp
   AnnualHouseHoldIncome: number
   MotherID: string
   FatherID: string
   HouseHoldID: string
   Children: Array<string>
-  createdAt: firestore.Timestamp
-  updatedAt: firestore.Timestamp
-  deletedAt: firestore.Timestamp
+  createdAt: firebase.firestore.Timestamp
+  updatedAt: firebase.firestore.Timestamp
+  deletedAt: firebase.firestore.Timestamp
 }

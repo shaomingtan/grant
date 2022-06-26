@@ -1,4 +1,4 @@
-import firestore from '@firebase/firestore';
+import firebase from 'firebase-admin';
 
 export enum HousingTypes {
   LANDED= "Landed",
@@ -23,7 +23,7 @@ export interface HouseHoldType {
   housingType: HousingTypes
   Members: Array<string>
   AnnualHouseholdIncome: number
-  createdAt: firestore.Timestamp
-  updatedAt: firestore.Timestamp
-  deletedAt: firestore.Timestamp
+  createdAt: firebase.firestore.Timestamp
+  updatedAt: firebase.firestore.Timestamp
+  deletedAt: firebase.firestore.Timestamp
 }
