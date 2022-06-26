@@ -32,10 +32,18 @@ const  memberRepo = (db) => {
     return docRef.id
   };
 
+  const updateDocument = async (id: string, values: any) => {
+    return refMember(db)
+        .doc(id)
+        .update(values)
+        .catch((e: any) => console.log('updateMember Error:', e));
+  };
+
   return {
     getDocuments,
     getDocument,
-    addDocument
+    addDocument,
+    updateDocument
   }
 }
 

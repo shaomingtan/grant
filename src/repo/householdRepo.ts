@@ -32,10 +32,18 @@ const houseHoldRepo = (db) => {
     return docRef.id
   };
 
+  const updateDocument = async (id: string, values: any) => {
+    return refHouseHold(db)
+        .doc(id)
+        .update(values)
+        .catch((e: any) => console.log('updateHouseHold Error:', e));
+  };
+
   return {
     getDocuments,
     getDocument,
-    addDocument
+    addDocument,
+    updateDocument
   }
 }
 

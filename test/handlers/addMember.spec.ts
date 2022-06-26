@@ -12,14 +12,11 @@ beforeEach(async () => {
 describe("addMember", async () => {
   it("adds a new member in db", async () => {
     const membersBefore = await config.repo.memberRepo.getDocuments()
-    console.log('membersBefore', membersBefore)
-    expect(membersBefore.length, 0)
+    expect(membersBefore.length).to.eq(0)
 
     const member1 = templateMember({})
-    console.log("member1", member1)
     await config.handlers.addMember(member1)
     const membersafter = await config.repo.memberRepo.getDocuments()
-    console.log('membersafter', membersafter)
-    expect(membersafter.length, 1)
+    expect(membersafter.length).to.eq(1)
   })
 })

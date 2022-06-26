@@ -52,13 +52,31 @@ app.post('/member', async (req, res) => {
   }
 })
 
+app.get('/member/:memberID', async (req, res) => {
+  try {
+    const {memberID}=req.params
+    const result = await handlers.getMember(memberID)
+    res.json(result);
+  } catch (e) {
+    console.log("error", e)
+    return res.sendStatus(500)
+  }
+});
+
+// Add member to household endpoint
+app.post('/household/:houseHoldID/member/:memberID', async (req, res) => {
+    const {houseHoldID,memberID}=req.params
+    const result = await handlers.addMemberToHouseHold({houseHoldID,memberID})
+    res.status(result.status)
+    return res.send(result.message)
+})
+
 
 // app.patch('/household', async (req, res) => {})
 // app.delete('/household', async (req, res) => {})
 // app.patch('/member', async (req, res) => {})
 // app.delete('/member', async (req, res) => {})
 
-// app.post('/household/${householdID}/member', async (req, res) => {})
 // app.delete('/household/${householdID}/member/', async (req, res) => {})
 
 app.listen(port, () => {

@@ -12,14 +12,11 @@ beforeEach(async () => {
 describe("addHouseHold", async () => {
   it("adds a new household in db", async () => {
     const houseHoldsBefore = await config.repo.houseHoldRepo.getDocuments()
-    console.log('houseHoldsBefore', houseHoldsBefore)
-    expect(houseHoldsBefore.length, 0)
+    expect(houseHoldsBefore.length).to.eq(0)
 
     const houseHold1 = templateHouseHold({})
-    console.log("houseHold1", houseHold1)
     await config.handlers.addHouseHold(houseHold1)
     const houseHoldsafter = await config.repo.houseHoldRepo.getDocuments()
-    console.log('houseHoldsafter', houseHoldsafter)
-    expect(houseHoldsafter.length, 1)
+    expect(houseHoldsafter.length).to.eq(1)
   })
 })
