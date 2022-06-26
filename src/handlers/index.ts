@@ -1,8 +1,8 @@
-import getHouseHold from './getHouseHold';
+import getHouseHolds from './getHouseHolds';
 
 const init = (repo) => {
   return {
-    getHouseHold: getHouseHold(repo),
+    getHouseHolds: getHouseHolds(repo),
   };
 };
 

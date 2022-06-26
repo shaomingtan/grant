@@ -1,6 +1,6 @@
 import {HouseHoldType} from "../types/houseHold"
 
-const houseHoldRepo = (db) => async () => {
+const houseHoldRepo = (db) => {
   const refHouseHold = (db) => db.collection('household');
   
   const getDocuments = async () => {
