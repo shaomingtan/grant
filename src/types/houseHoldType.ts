@@ -22,7 +22,7 @@ export interface HouseHoldType {
   id?: string
   housingType: HousingTypes
   members: Array<string>
-  annualHouseholdIncome: number
+  annualHouseHoldIncome: number
   createdAt?: firebase.firestore.Timestamp
   updatedAt?: firebase.firestore.Timestamp
   deletedAt?: firebase.firestore.Timestamp

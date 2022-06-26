@@ -1,8 +1,6 @@
 const addMemberToHouseHold = (repo) => async ({houseHoldID,memberID}) => {
   const {houseHoldRepo,memberRepo} = repo
 
-  console.log("houseHoldID", houseHoldID)
-  console.log("memberID", memberID)
   // Get household
   const houseHold = await houseHoldRepo.getDocument(houseHoldID)
   if (!houseHold) {
@@ -27,12 +25,19 @@ const addMemberToHouseHold = (repo) => async ({houseHoldID,memberID}) => {
   // Add member to household
   try {
     // TODO: Make add these 2 db writes as part of a transaction so it can be rolled back if one fails
-    await memberRepo.updateDocument(member.id, {houseHoldID: houseHold.id})
+    // Calculate new household annual Income
+    const newAnnualHouseHoldIncome = houseHold.annualHouseHoldIncome + member.annualIncome
+    
+    // Update member data
+    await memberRepo.updateDocument(member.id, {houseHoldID: houseHold.id, annualHouseHoldIncome: newAnnualHouseHoldIncome})
+    
+    // Update household data
     houseHold.members.push(member.id)
-    await houseHoldRepo.updateDocument(houseHold.id, {members: houseHold.members})
+    await houseHoldRepo.updateDocument(houseHold.id, {members: houseHold.members, annualHouseHoldIncome: newAnnualHouseHoldIncome})
+
     return {status:200, message:"Member added to household"}
   } catch (e) {
-    console.log("updateHouseHoldID error", e)
+    console.log("add member to household error", e)
     return {status:500, message:"Error adding member to household"}
   }
 }

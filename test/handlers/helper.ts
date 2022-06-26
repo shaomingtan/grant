@@ -22,7 +22,7 @@ export const templateHouseHold = (
 ):HouseHoldType => ({
   housingType: options.housingType || HousingTypes.HDB,
   members: options.members || [],
-  annualHouseholdIncome: options.annualHouseholdIncome || 8000,
+  annualHouseHoldIncome: options.annualHouseHoldIncome || 8000,
 })
 
 export const templateMember = (

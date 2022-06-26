@@ -1,7 +1,9 @@
 const addMember = (repo) => async (body) => {
   const {memberRepo} = repo
   
-  //TODO add validation to ensure that all fields are present
+  // TODO add validation to ensure that all fields are present
+  // TODO Prevent computed fields like annualHouseHoldIncome from being set by user
+  // TODO Prevent houseHoldID from being set since that's handled by another endpoint
   const newMemberID = await memberRepo.addDocument(body)
 
   // Update spouse member
@@ -46,7 +48,6 @@ const addMember = (repo) => async (body) => {
   }
 
   return {status:200, message:"Member added", memberID: newMemberID}
-
 }
 
 export default addMember
